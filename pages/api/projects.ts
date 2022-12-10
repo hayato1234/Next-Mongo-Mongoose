@@ -1,3 +1,5 @@
+// this is for Mongo without mongoose
+
 import { WithId, Document } from "mongodb";
 import clientPromise from "../../lib/mongodb";
 

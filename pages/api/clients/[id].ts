@@ -1,4 +1,4 @@
-// this is for Mongo without mongoose
+// this is for Mongo with mongoose
 
 import dbConnect from "../../../lib/dbConnect";
 const Client = require("../../../models/client");

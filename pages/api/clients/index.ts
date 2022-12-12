@@ -1,29 +1,16 @@
-// this is for Mongo without mongoose
-
+// this is for Mongo with mongoose
 import dbConnect from "../../../lib/dbConnect";
-import Cors from "cors";
 import { NextApiRequest, NextApiResponse } from "next";
-import { resolve } from "path";
+import runMiddleware from "../appCors";
 const Client = require("../../../models/client");
+const Cors = require("cors");
 
+const whitelist = ["http://localhost:3000", "https://localhost:3443"];
 const cors = Cors({
-  methods: ["POST", "GET", "HEAD"],
+  methods: ["POST", "HEAD"],
+  origin: whitelist,
+  optionsSuccessStatus: 200,
 });
-
-const runMiddleware = (
-  req: NextApiRequest,
-  res: NextApiResponse,
-  fn: Function
-) => {
-  return new Promise((resolve, reject) => {
-    fn(req, res, (result: any) => {
-      if (result instanceof Error) {
-        return reject(result);
-      }
-      return resolve(result);
-    });
-  });
-};
 
 export default async function handler(
   req: NextApiRequest,
